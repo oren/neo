@@ -1,0 +1,22 @@
+{
+  "name": "neo",
+  "version": "1.0.0",
+  "description": "## Run the Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oren/neo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oren/neo/issues"
+  },
+  "homepage": "https://github.com/oren/neo#readme",
+  "dependencies": {
+    "seraph": "^0.13.2"
+  }
+}
