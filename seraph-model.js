@@ -6,7 +6,7 @@
 var db = require("seraph")({server: "http://localhost:7474", user: 'neo4j', pass: '1111'});
 var model = require('seraph-model');
 var deleteDB = require('./delete-db.js');
-var relate = require('./relate.js');
+var saveRelationship = require('./save-relationship.js');
 
 var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
@@ -66,7 +66,7 @@ function doStuff() {
   }
 
   function relateThem(nodes) {
-    relate('Nearby', nodes[0], nodes[1]).then(done).catch(error);
+    saveRelationship('Nearby', nodes[0], nodes[1]).then(done).catch(error);
   }
 
   function done(res) {

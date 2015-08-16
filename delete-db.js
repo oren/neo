@@ -20,7 +20,6 @@ function cypher(query) {
         return reject(err);
       }
 
-      console.log('run cypher query', query);
       return resolve(results)
     });
   });

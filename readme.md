@@ -19,11 +19,10 @@ http://localhost:7474 password: 1111
     npm install
     node seraph.js
     node seraph-model.js
-    node delete-db.js
 
 ## Web interface commands
 
-** view all db **
+** view the entire db **
 
     MATCH (n)
     RETURN n

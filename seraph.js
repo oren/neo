@@ -6,7 +6,7 @@
 var db = require("seraph")({server: "http://localhost:7474", user: 'neo4j', pass: '1111'});
 var deleteDB = require('./delete-db.js');
 var saveNode = require('./save-node.js');
-var relate = require('./relate.js');
+var saveRelationship = require('./save-relationship.js');
 
 const label = {
   plhebotomist: 'Plhebotomist',
@@ -25,7 +25,7 @@ function doStuff() {
   Promise.all([saveArmando(), saveBela()]).then(relateThem);
 
   function relateThem(nodes) {
-    relate('Nearby', nodes[0], nodes[1]).then(done).catch(error);
+    saveRelationship('Nearby', nodes[0], nodes[1]).then(done).catch(error);
   }
 }
 
