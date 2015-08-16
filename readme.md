@@ -22,7 +22,7 @@ http://localhost:7474 password: 1111
 
 ## Web interface commands
 
-** view the entire db **
+**view the entire db**
 
     MATCH (n)
     RETURN n
