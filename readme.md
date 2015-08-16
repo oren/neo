@@ -17,8 +17,8 @@ http://localhost:7474 password: 1111
 ## Run examples
 
     npm install
-    node seraph.js
-    node seraph-model.js
+    node seraph.js         # using seraph without the model package
+    node seraph-model.js   # using seraph with the model packages
 
 ## Web interface commands
 
