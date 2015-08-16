@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/oren/neo#readme",
   "dependencies": {
-    "seraph": "^0.13.2"
+    "seraph": "^0.13.2",
+    "seraph-model": "^0.7.3"
   }
 }

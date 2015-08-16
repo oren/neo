@@ -1,6 +1,9 @@
 # Neo4j using docker and node.js
 
-I also use [Seraph](https://github.com/brikteknologier/seraph), an NPM package that provide a few helper functions on top of Neo4j's REST API. A few example - `db.save(node)`, `db.find(node)`, and `db.query(cypher)`
+I use the following NPM packages:
+
+* [Seraph](https://github.com/brikteknologier/seraph) - a few helper functions on top of Neo4j's REST API. A few example - `db.save(node)`, `db.find(node)`, and `db.query(cypher)`
+* [Seraph](https://github.com/brikteknologier/seraph-model) - thin model layer for seraph
 
 ## Run the Database
 
@@ -11,7 +14,16 @@ docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data:/
 http://localhost:7474 password: 1111
 
 
-## Run example
+## Run examples
 
     npm install
-    node index.js
+    node seraph.js
+    node seraph-model.js
+    node delete-db.js
+
+## Web interface commands
+
+** view all db **
+
+    MATCH (n)
+    RETURN n
