@@ -1,4 +1,4 @@
-# Neo4j using docker and node.js
+# Neo4j, Node.js, and seraph
 
 I use the following NPM packages:
 
