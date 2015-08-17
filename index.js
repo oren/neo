@@ -6,41 +6,38 @@ var cypher = require('./cypher.js');
 var params = [];
 var query = '';
 
-// createCities();
 createAirPorts();
 createTravelers();
 createFlights();
 
-function createCities() {
-  query = `CREATE (c:City { props })`;
-  params = [
-    {name: 'Atlanta'},
-    {name: 'Chicago'},
-    {name: 'Los Angeles'},
-    {name: 'Dallas-Fort Worth'},
-    {name: 'Denver'},
-    {name: 'New York'},
-    {name: 'San Francisco'}
-  ];
-  cypher(query, params, done);
-}
-
-// CREATE (n)-[:LOVES {since: {value}}]->(m)
-// ATL ORD LAX DFW DEN JFK SFO LGA
-
-// CREATE (le:Person {name:"Euler"}),(db:Person {name:"Bernoulli"}),
-//   (le)-[:KNOWS {since:1768}]->(db)
-// RETURN le, db
 function createAirPorts() {
-  query = `
-    CREATE (a:Airport {code: 'ATL'}), (c:City {name: 'Atlanta'}),
-    (a)-[:IN]->(c)
-  `
-  // params = [
-  //   {code: 'ATL'},
-  // ];
-  cypher(query, params, done);
+  var airports = [
+    {code: 'ATL', city: 'Atlanta'},
+    {code: 'ORD', city: 'Chicago'},
+    {code: 'LAX', city: 'Los Angeles'},
+    {code: 'DFW', city: 'Dallas-Fort Worth'},
+    {code: 'DEN', city: 'Denver'},
+    {code: 'JFK', city: 'New York'},
+    {code: 'SFO', city: 'San Francisco'},
+    {code: 'LGA', city: 'New York'}
+  ];
+
+  airports.forEach(function (airport) {
+    relate(airport.code, airport.city);
+  });
+
+  function relate(airport, city) {
+    query = `
+      CREATE (a:Airport {code: '${airport}'}), (c:City {name: '${city}'}),
+      (a)-[:IN]->(c)
+    `;
+    console.log('***');
+    console.log(query);
+    console.log('***');
+    cypher(query, params, done);
+  }
 }
+
 
 function createTravelers() {
   query = `
@@ -76,7 +73,7 @@ function createFlights() {
   cypher(query, params, done);
 }
 
-function done(err,data) {
+function done(err, data) {
   if (err) {
     console.error('Error in query', err);
     return;
