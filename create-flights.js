@@ -1,57 +1,29 @@
 'use strict';
 
 require('./env.js');
-var request = require("request");
-var host = process.env.HOST;
-var port = process.env.PORT;
-var username = process.env.USER;
-var password = process.env.PASS;
-var url = `http://${username}:${password}@${host}:${port}/db/data/transaction/commit`;
-// var cypher2 = require('./cypher2.js');
+var cypher = require('./cypher.js');
 
-var params = [];
-var query = '';
-
-createFlight();
+var email = 'matt@test.com';
+var flight = {from: 'LAX', to: 'JFK', time: new Date()};
+createFlight(email, flight);
 
 function createFlight(email, flight) {
-  findTraveler(email).then(createFl).catch(error);
+  // find Traveler
+  // create Flight node and Create edge from traveler to flight
 
-  function findTraveler(email) {
-    var query = `MATCH (t:Traveler) WHERE t.name="Matt" RETURN t`;
-    return new Promise(function(resolve, reject) {
-      // return cypher2(query, {});
-      request.post({
-        uri: url,
-        json: {statements: [{statement: query, parameters: {'props': params}}]}
-      }, function(err, res) {
-        console.log('err', err);
-        console.log('res.body', res.body);
-        return resolve(res.body)
-        //TODO: reject
-      })
-    });
-  }
-
-  function createFl(res) {
-    console.log('createFlight', res);
-    // query = `
-    //   CREATE (t:Tra {code: '${airport}'}), (c:City {name: '${city}'}),
-    //   (a)-[:IN]->(c)
-    // `;
-    // cypher(query, params, done);
-  }
-
-  function error(err) {
-    console.error('error in query', err);
-  }
+  var query = `MATCH (t:Traveler) WHERE t.email="${email}" RETURN ID(t)`;
+  cypher(query, done);
 }
 
 function done(err, data) {
-  if (err) {
-    console.error('Error in query', err);
+  if (err || data.errors.length) {
+    console.error('Error in query:', data.errors[0].message);
     return;
   }
 
-  console.log(JSON.stringify(data));
+  console.log(data.results[0].data[0].row[0]);
 }
+
+// wrong id
+// CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t:Traveler {id: 910})-[:CREATED]->(f)
+

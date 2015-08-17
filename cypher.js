@@ -7,7 +7,14 @@ var password = process.env.PASS;
 
 var url = `http://${username}:${password}@${host}:${port}/db/data/transaction/commit`;
 
+// can be called with a string or with a statement array
 function cypher(statements, cb) {
+  if (typeof statements === 'string') {
+    statements = [{
+        'statement' : statements
+      }]
+  }
+
   request.post({
     uri: url,
     json: {statements: statements}
