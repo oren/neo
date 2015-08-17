@@ -19,7 +19,10 @@ function createAirPorts() {
     {code: 'DEN', city: 'Denver'},
     {code: 'JFK', city: 'New York'},
     {code: 'SFO', city: 'San Francisco'},
-    {code: 'LGA', city: 'New York'}
+    {code: 'LGA', city: 'New York'},
+    {code: 'PEK', city: 'Beijing'},
+    {code: 'LHR', city: 'London'},
+    {code: 'HND', city: 'Jokyo'}
   ];
 
   airports.forEach(function (airport) {
