@@ -31,9 +31,6 @@ function createAirPorts() {
       CREATE (a:Airport {code: '${airport}'}), (c:City {name: '${city}'}),
       (a)-[:IN]->(c)
     `;
-    console.log('***');
-    console.log(query);
-    console.log('***');
     cypher(query, params, done);
   }
 }
