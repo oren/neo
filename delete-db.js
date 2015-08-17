@@ -1,5 +1,7 @@
 var db = require("seraph")({server: "http://localhost:7474", user: 'neo4j', pass: '1111'});
 
+deleteDB();
+
 function deleteDB() {
   var query = `
     MATCH (n)

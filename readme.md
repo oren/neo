@@ -1,9 +1,4 @@
-# Neo4j, Node.js, and seraph
-
-I use the following NPM packages:
-
-* [Seraph](https://github.com/brikteknologier/seraph) - a few helper functions on top of Neo4j's REST API. A few example - `db.save(node)`, `db.find(node)`, and `db.query(cypher)`
-* [Seraph](https://github.com/brikteknologier/seraph-model) - thin model layer for seraph
+# Neo4j, Node.js
 
 ## Run the Database
 
@@ -17,8 +12,7 @@ http://localhost:7474 password: 1111
 ## Run examples
 
     npm install
-    node seraph.js         # using seraph without the model package
-    node seraph-model.js   # using seraph with the model packages
+    node index.js
 
 ## Web interface commands
 
