@@ -7,10 +7,10 @@ var password = process.env.PASS;
 
 var url = `http://${username}:${password}@${host}:${port}/db/data/transaction/commit`;
 
-function cypher(query, params, cb) {
+function cypher(statements, cb) {
   request.post({
     uri: url,
-    json: {statements: [{statement: query, parameters: {'props': params}}]}
+    json: {statements: statements}
   }, function(err,res) {
     cb(err, res.body)
   })
