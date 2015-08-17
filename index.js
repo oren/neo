@@ -35,7 +35,6 @@ function createAirPorts() {
   }
 }
 
-
 function createTravelers() {
   query = `
     CREATE CONSTRAINT ON (t:Traveler)
