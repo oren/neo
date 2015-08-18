@@ -14,9 +14,10 @@ function createFlight(email, flight) {
 
   var statements = [
     {
-      'statement' : `MATCH (t:Traveler) WHERE ID(t) = {travelerId} CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t)-[:CREATED]->(f)`,
+      'statement' : `MATCH (t:Traveler) WHERE ID(t) = {travelerId} CREATE (f:Flight {code}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t)-[:CREATED]->(f)`,
       parameters: {
-        travelerId: parseInt(process.argv[2], 10)
+        travelerId: parseInt(process.argv[2], 10),
+        code: {code: 'LY-332'}
       }
     }
   ];
