@@ -1,3 +1,4 @@
+// pass the traveler id is a paramere to this script
 'use strict';
 
 require('./env.js');
@@ -15,7 +16,7 @@ function createFlight(email, flight) {
     {
       'statement' : `MATCH (t:Traveler) WHERE ID(t) = {travelerId} CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t)-[:CREATED]->(f)`,
       parameters: {
-        travelerId: 1047
+        travelerId: parseInt(process.argv[2], 10)
       }
     }
   ];
@@ -32,3 +33,8 @@ function done(err, data) {
   // console.log(data.results[0].data[0].row[0]);
   console.log(data);
 }
+
+// 'statement' : `MATCH (t:Traveler) WHERE ID(t) = {travelerId} CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t)-[:CREATED]->(f)`,
+      // parameters: {
+      //   travelerId: 1047
+      // }
