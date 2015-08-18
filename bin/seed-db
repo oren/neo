@@ -1,0 +1,6 @@
+#!/bin/sh
+
+node delete-db
+node create-airports.js
+node create-travelers.js
+# node create-flights.js

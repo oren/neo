@@ -11,8 +11,16 @@ function createFlight(email, flight) {
   // find Traveler
   // create Flight node and Create edge from traveler to flight
 
-  var query = `MATCH (t:Traveler) WHERE t.email="${email}" RETURN ID(t)`;
-  cypher(query, done);
+  var statements = [
+    {
+      'statement' : `MATCH (t:Traveler) WHERE ID(t) = {travelerId} CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t)-[:CREATED]->(f)`,
+      parameters: {
+        travelerId: 1047
+      }
+    }
+  ];
+
+  cypher(statements, done);
 }
 
 function done(err, data) {
@@ -21,9 +29,6 @@ function done(err, data) {
     return;
   }
 
-  console.log(data.results[0].data[0].row[0]);
+  // console.log(data.results[0].data[0].row[0]);
+  console.log(data);
 }
-
-// wrong id
-// CREATE (f:Flight {code: 'LA-439'}), (a2:Airport {code: 'JFK'})<-[:TO]-(f)-[:FROM]->(a:Airport {code: 'LAX'}), (t:Traveler {id: 910})-[:CREATED]->(f)
-
